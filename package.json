@@ -1,0 +1,39 @@
+{
+  "name": "tco",
+  "version": "0.0.1",
+  "description": "Tail call optimization in Node",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rsp/node-tco.git"
+  },
+  "keywords": [
+    "recursion",
+    "tail recursion",
+    "tail recursive",
+    "tail call elimination",
+    "tail call optimization",
+    "proper tail recursion",
+    "properly tail recursive",
+    "tail call",
+    "tail calls",
+    "recursion",
+    "functional programming",
+    "functional",
+    "fp",
+    "tco"
+  ],
+  "author": {
+    "name": "Rafał Pocztarski",
+    "email": "r.pocztarski@gmail.com",
+    "url": "https://rsp.github.io/"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rsp/node-tco/issues"
+  },
+  "homepage": "https://github.com/rsp/node-tco#readme"
+}
