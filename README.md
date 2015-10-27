@@ -8,15 +8,15 @@ Tail call optimization in Node.
 
 This module lets you define deeply recursive functions without using any additional memory for stack frames. The recursion depth can grow infinitely and the memory consumption stays constant.
 
-This is not perfect but it works now. Hopefully one day JavaScript will get real tail call optimization and this will not be needed.
-
-Why
----
-Sometimes recursion can be conceptually preferable to describe certain problems. But to have an arbitrary depth of recursion we have to find a way to implement a recursive function as an iterative process.
+Background
+----------
+Sometimes recursion can be conceptually preferable to describe certain problems. But to have an arbitrarily deep recursion we have to find a way to implement a recursive function as an iterative process.
 
 Tail call optimization has been known and used for almost 40 years but has been almost completely ignored by the vast majority of programmers.The result is that it is not implemented in most of the programming languages that we use today, including JavaScript.
 
-The problem is that in a language that doesn't optimize tail calls like Javascript you cannot infinitely call functions inside of functions even in tail positions because every call is another stack frame and you will eventually hit the limit and get an exception:
+Problem
+-------
+The problem is that in a language that doesn't optimize tail calls like JavaScript you cannot infinitely call functions inside of functions even in tail positions because every call is another stack frame and you will eventually hit the limit and get an exception:
 
 ```
 [RangeError: Maximum call stack size exceeded]
@@ -24,15 +24,16 @@ The problem is that in a language that doesn't optimize tail calls like Javascri
 
 Even if you go under the limit you are still wasting memory.
 
-How
----
-
+Solution
+--------
 This module helps you avoid that problem without the need to rewrite your functions as nested loops.
 
 But because this cannot be done automatically in JavaScript, you will have to wrap your functions with `tco()` and make a slight change to your return statements:
 
 1. change `return fun(a, b);` to `return [fun, [a, b]];`
 2. change `return val;` to `return [null, val];`
+
+This is not perfect but it works now. Hopefully one day JavaScript will get real tail call optimization and this will no longer be needed.
 
 Example
 -------
