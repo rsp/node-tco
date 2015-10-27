@@ -1,29 +1,28 @@
 
 var tco = require('./index');
 
-var nrec = function (n) {
-    if (n < 100000)
-        return nrec(n+1);
+var nrec = function (n, max) {
+    if (n < max)
+        return nrec(n+1, max);
     else
         return n;
-}
+};
 
-var trec = tco(function (n) {
-    if (n < 100000)
-        return [trec, [n+1]];
+var trec = tco(function (n, max) {
+    if (n < max)
+        return [trec, [n+1, max]];
     else
         return [null, n];
 });
 
-var x = function (y) { return y; };
+var max = 10000000;
+run(nrec, max, 'normal recursion');
+run(trec, max, 'tco recursion');
 
-run(nrec, 'normal recursion');
-run(trec, 'tco recursion');
-
-function run(f) {
+function run(f, max, t) {
     try {
-        console.log('normal recursion:');
-        console.log(f(0));
+        console.log(t+':');
+        console.log(f(0, max));
     } catch(e) {
         console.log(e);
     }
