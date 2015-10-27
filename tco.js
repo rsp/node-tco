@@ -5,7 +5,7 @@ Released under MIT license
 https://github.com/rsp/node-tco
 */
 
-window.tco = (function (tco) {
+window.tco = (function () {
 
 "use strict";
 
@@ -39,4 +39,4 @@ function tco(f) {
 
 return tco;
 
-}(tco));
+}());
