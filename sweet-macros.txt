@@ -1,0 +1,26 @@
+macro tail {
+  rule { $f($x (,) ...) } => {
+    return [$f, [$x (,) ...]]
+  }
+}
+macro tail2 {
+  rule { $f $xexpr } => {
+    return [$f, [$x]]
+  }
+}
+macro tail3 {
+  rule { $f($x:expr (,) ...) } => {
+    return [$f, [$x (,) ...]]
+  }
+}
+
+macro ret {
+  rule { $x:expr } => {
+    return [null, $x]
+  }
+}
+tail3 a(1, 2, 3, 4+2);
+
+ret 1;
+ret a(1, 2, 3, 4);
+
