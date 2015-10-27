@@ -108,13 +108,18 @@ Even if we set the maximum recursion depth to a billion it will take a lot of ti
 
 Installation
 ------------
-Install to use in your project, updating the dependencies in package.json:
+Install to use in your Node project, updating the dependencies in package.json:
 ```sh
 npm install tco --save
 ```
 
-Usage
------
+Usage in browser
+----------------
+Example with CDN:
+
+```html
+<script src="https://cdn.rawgit.com/rsp/node-tco/v0.0.6/tco.min.js"></script>
+```
 
 This is work in progress - more to come.
 
