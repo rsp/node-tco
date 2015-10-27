@@ -35,5 +35,8 @@
   "bugs": {
     "url": "https://github.com/rsp/node-tco/issues"
   },
-  "homepage": "https://github.com/rsp/node-tco#readme"
+  "homepage": "https://github.com/rsp/node-tco#readme",
+  "devDependencies": {
+    "uglify-js": "^2.5.0"
+  }
 }

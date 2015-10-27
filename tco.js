@@ -1,7 +1,13 @@
+/*
+tco.js
+Copyright (c) 2015 Rafał Pocztarski
+Released under MIT license
+https://github.com/rsp/node-tco
+*/
+
+window.tco = (function (tco) {
 
 "use strict";
-
-module.exports = tco;
 
 function tco(f) {
 
@@ -30,3 +36,7 @@ function tco(f) {
         throw new Error('tco() expects a function');
     }
 }
+
+return tco;
+
+}(tco));

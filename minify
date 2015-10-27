@@ -1,0 +1,6 @@
+#!/bin/bash
+read -d '' c << 'C'
+/* tco.js by Rafał Pocztarski - https://github.com/rsp/node-tco */
+C
+echo "$c" > tco.min.js
+node_modules/uglify-js/bin/uglifyjs tco.js -c -m >> tco.min.js
