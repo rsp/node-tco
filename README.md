@@ -35,7 +35,7 @@ But because this cannot be done automatically in JavaScript, you will have to wr
 1. change `return fun(a, b);` to `return [fun, [a, b]];`
 2. change `return val;` to `return [null, val];`
 
-This is not perfect but it works and maintains certain important properies described in section [Philosophy](#Philosophy).
+This is not perfect but it works and maintains certain important properies described in section [Philosophy](#philosophy).
 
 Hopefully one day JavaScript will get real tail call optimization and this will no longer be needed.
 
