@@ -8,6 +8,8 @@ Tail call optimization in Node.
 
 This module lets you define deeply recursive functions without using any additional memory for stack frames. The recursion depth can grow infinitely and the memory consumption stays constant.
 
+Every function built with this module can call other functions in the same way as it calls itself (mutual recursion is identical to self recursion), and it doesn't have to know whether those functions are themselves build with this module or not. Also, from other functions it can be called like any other function.
+
 Background
 ----------
 Sometimes recursion can be conceptually preferable to describe certain problems. But to have an arbitrarily deep recursion we have to find a way to implement a recursive function as an iterative process.
@@ -33,7 +35,23 @@ But because this cannot be done automatically in JavaScript, you will have to wr
 1. change `return fun(a, b);` to `return [fun, [a, b]];`
 2. change `return val;` to `return [null, val];`
 
-This is not perfect but it works now. Hopefully one day JavaScript will get real tail call optimization and this will no longer be needed.
+This is not perfect but it works and maintains certain important properies described in section [Philosophy](#Philosophy).
+
+Hopefully one day JavaScript will get real tail call optimization and this will no longer be needed.
+
+Philosophy
+----------
+A function built with this module has the following properties:
+
+1. other functions can call it as a normal function (they don't have to be aware whether it is tco-optimized or not)
+2. it can call recursively other functions in exactly the same way as it calls itself (no special case for self-recursion)
+3. it can call other non-optimized functions in the same way as it calls tco-optimized functions (it doesn't have to be aware whether other functions are optimized or not)
+
+The cost of those properties is that the tco-optimized function needs to be aware that it is itself tco-optimized (you need to use special syntax but only for return statements).
+
+Some other solutions take a different approach where the optimized function needs no changes to its code but it needs to be called in a special way by other optimized functions, making mutual recursion much harder.
+
+With this module the optimized function can call other functions in the same way as it calls itself, and it doesn't have to know whether those functions are optimized or not. It means that all needed changes are contained inside the optimized function body and are needed only for its return statements.
 
 Example
 -------
@@ -105,6 +123,31 @@ tco recursion:
 ```
 
 Even if we set the maximum recursion depth to a billion it will take a lot of time but it will still work and not use more memory than with `max = 5` or anyhning else.
+
+Mutual recursion
+----------------
+The mutual recursion works in exactly the same way as simple self-recursion:
+
+```
+// normal recursive function:
+
+var neven = function (n) {
+    return n == 0 ? true : nodd(n - 1);
+};
+var nodd = function (n) {
+    return n == 0 ? false : neven(n - 1);
+};
+
+// tco recursive function:
+
+var teven = tco(function (n) {
+    return n == 0 ? [null, true] : [todd, [n - 1]];
+});
+var todd = tco(function (n) {
+    return n == 0 ? [null, false] : [teven, [n - 1]];
+});
+```
+See [example2.js](example2.js) for more details.
 
 Installation
 ------------
