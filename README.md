@@ -118,7 +118,7 @@ Usage in browser
 Example with CDN:
 
 ```html
-<script src="https://cdn.rawgit.com/rsp/node-tco/v0.0.7/tco.min.js"></script>
+<script src="https://cdn.rawgit.com/rsp/node-tco/v0.0.8/tco.min.js"></script>
 ```
 
 This is work in progress - more to come.
