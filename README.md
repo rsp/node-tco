@@ -32,9 +32,7 @@ var trec = tco(function (n, max) {
         return [null, n];
 });
 
-var max = 10000000;
-run(nrec, max, 'normal recursion');
-run(trec, max, 'tco recursion');
+// helper function to check for errors:
 
 function run(f, max, t) {
     try {
@@ -44,7 +42,42 @@ function run(f, max, t) {
         console.log(e);
     }
 }
+
+// run both functions:
+
+var max = 1000;
+run(nrec, max, 'normal recursion');
+run(trec, max, 'tco recursion');
 ```
+
+For `max = 1000` this code will print:
+
+```
+normal recursion:
+1000
+tco recursion:
+1000
+```
+
+For `max = 10000` it is still fine:
+
+```
+normal recursion:
+10000
+tco recursion:
+10000
+```
+
+But for `max = 100000` we get:
+
+```
+normal recursion:
+[RangeError: Maximum call stack size exceeded]
+tco recursion:
+100000
+```
+
+Even if we set the maximum recursion depth to a billion it will take a lot of time but it will still work and not use more memory than with `max = 5` or anyhning else.
 
 Installation
 ------------

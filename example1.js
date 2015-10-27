@@ -32,7 +32,7 @@ function run(f, max, t) {
 
 // run both functions:
 
-var max = 10000;
+var max = 1000000;
 run(nrec, max, 'normal recursion');
 run(trec, max, 'tco recursion');
 
