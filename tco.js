@@ -37,6 +37,10 @@ function tco(f) {
     }
 }
 
+tco.value = function (v) {
+    return [null, v];
+};
+
 return tco;
 
 }());

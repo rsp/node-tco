@@ -1,8 +1,6 @@
 
 "use strict";
 
-module.exports = tco;
-
 function tco(f) {
 
     if (typeof f == 'function') {
@@ -30,3 +28,10 @@ function tco(f) {
         throw new Error('tco() expects a function');
     }
 }
+
+tco.value = function (v) {
+    return [null, v];
+};
+
+module.exports = tco;
+

@@ -13,10 +13,10 @@ var nodd = function (n) {
 // tco recursive function:
 
 var teven = tco(function (n) {
-    return n == 0 ? [null, true] : [todd, [n - 1]];
+    return n == 0 ? tco.value(true) : [todd, [n - 1]];
 });
 var todd = tco(function (n) {
-    return n == 0 ? [null, false] : [teven, [n - 1]];
+    return n == 0 ? tco.value(false) : [teven, [n - 1]];
 });
 
 // helper function to check for errors:

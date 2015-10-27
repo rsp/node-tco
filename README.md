@@ -10,6 +10,12 @@ This module lets you define deeply recursive functions without using any additio
 
 Every function built with this module can call other functions in the same way as it calls itself (mutual recursion is identical to self recursion), and it doesn't have to know whether those functions are themselves build with this module or not. Also, from other functions it can be called like any other function.
 
+Performance
+-----------
+This is how it compares to other similar solutions:
+
+* http://jsperf.com/tco/21
+
 Background
 ----------
 Sometimes recursion can be conceptually preferable to describe certain problems. But to have an arbitrarily deep recursion we have to find a way to implement a recursive function as an iterative process.
@@ -34,6 +40,12 @@ But because this cannot be done automatically in JavaScript, you will have to wr
 
 1. change `return fun(a, b);` to `return [fun, [a, b]];`
 2. change `return val;` to `return [null, val];`
+
+This is the low level API that is not going to change but there are also some other ways to do the same that may be more convenient in some cases:
+
+* `tco.value(val)` returns `[null, val]`
+
+(more to come)
 
 This is not perfect but it works and maintains certain important properies described in section [Philosophy](#philosophy).
 
@@ -161,7 +173,7 @@ Usage in browser
 Example with CDN:
 
 ```html
-<script src="https://cdn.rawgit.com/rsp/node-tco/v0.0.8/tco.min.js"></script>
+<script src="https://cdn.rawgit.com/rsp/node-tco/v0.0.9/tco.min.js"></script>
 ```
 
 This is work in progress - more to come.
