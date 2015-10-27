@@ -41,12 +41,53 @@ But because this cannot be done automatically in JavaScript, you will have to wr
 1. change `return fun(a, b);` to `return [fun, [a, b]];`
 2. change `return val;` to `return [null, val];`
 
-This is the low level API that is not going to change but there are also some other ways to do the same that may be more convenient in some cases:
+This is the low level API that is not going to change but there are also some other ways to do the same that may be more convenient in some cases.
+
+Alternative syntax
+------------------
+Here are some functions for convenience:
 
 * `tco.value(val)` returns `[null, val]`
 
 (more to come)
 
+Macros
+------
+Using those two [Sweet.js](http://sweetjs.org/) macros:
+
+```js
+macro tail {
+  rule { $f($x:expr (,) ...) } => {
+    return [$f, [$x (,) ...]]
+  }
+}
+macro ret {
+  rule { $x:expr } => {
+    return [null, $x]
+  }
+}
+```
+
+you can write:
+```js
+tail fun(a, b);
+// ...
+ret val;
+```
+
+instead of:
+```js
+return [fun, [a, b]];
+// ...
+return [null, val];
+```
+
+See: [**DEMO**](http://sweetjs.org/browser/editor.html#macro%20tail%20%7B%0A%20%20rule%20%7B%20$f($x:expr%20(,)%20...)%20%7D%20=%3E%20%7B%0A%20%20%20%20return%20%5B$f,%20%5B$x%20(,)%20...%5D%5D%0A%20%20%7D%0A%7D%0A%0Amacro%20ret%20%7B%0A%20%20rule%20%7B%20$x:expr%20%7D%20=%3E%20%7B%0A%20%20%20%20return%20%5Bnull,%20$x%5D%0A%20%20%7D%0A%7D%0A%0Atail%20fun(a,%20b);%0Aret%20val;%0A)
+
+This may be a much better syntax for the tco module where sweet.js can be used - definitely to be explored in the future.
+
+Imperfection
+------------
 This is not perfect but it works and maintains certain important properies described in section [Philosophy](#philosophy).
 
 Hopefully one day JavaScript will get real tail call optimization and this will no longer be needed.
@@ -173,7 +214,7 @@ Usage in browser
 Example with CDN:
 
 ```html
-<script src="https://cdn.rawgit.com/rsp/node-tco/v0.0.9/tco.min.js"></script>
+<script src="https://cdn.rawgit.com/rsp/node-tco/v0.0.10/tco.min.js"></script>
 ```
 
 This is work in progress - more to come.
