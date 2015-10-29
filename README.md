@@ -92,7 +92,7 @@ return [fun, [a, b]];
 return [null, val];
 ```
 
-See: [**DEMO**](http://sweetjs.org/browser/editor.html#macro%20tail%20%7B%0A%20%20rule%20%7B%20$f($x:expr%20(,)%20...)%20%7D%20=%3E%20%7B%0A%20%20%20%20return%20%5B$f,%20%5B$x%20(,)%20...%5D%5D%0A%20%20%7D%0A%7D%0A%0Amacro%20ret%20%7B%0A%20%20rule%20%7B%20$x:expr%20%7D%20=%3E%20%7B%0A%20%20%20%20return%20%5Bnull,%20$x%5D%0A%20%20%7D%0A%7D%0A%0Atail%20fun(a,%20b);%0Aret%20val;%0A)
+See: [**DEMO**](http://sweetjs.org/browser/editor.html#macro%20tail%20%7B%0A%20%20rule%20%7B%20$f%28$x:expr%20%28,%29%20...%29%20%7D%20=%3E%20%7B%0A%20%20%20%20return%20%5B$f,%20%5B$x%20%28,%29%20...%5D%5D%0A%20%20%7D%0A%7D%0A%0Amacro%20ret%20%7B%0A%20%20rule%20%7B%20$x:expr%20%7D%20=%3E%20%7B%0A%20%20%20%20return%20%5Bnull,%20$x%5D%0A%20%20%7D%0A%7D%0A%0Atail%20fun%28a,%20b%29;%0Aret%20val;%0A)
 
 This may be a much better syntax for the tco module where sweet.js can be used - definitely to be explored in the future.
 
@@ -113,7 +113,7 @@ macro ret {
 
 Now the only difference of optimized function body as compared to a normal function would be changing `return` keywords to `ret`.
 
-See [**DEMO**](http://sweetjs.org/browser/editor.html#macro%20ret%20%7B%0A%20%20rule%20%7B%20$f($x:expr%20(,)%20...)%20%7D%20=%3E%20%7B%0A%20%20%20%20return%20%5B$f,%20%5B$x%20(,)%20...%5D%5D%0A%20%20%7D%0A%20%20rule%20%7B%20$x:expr%20%7D%20=%3E%20%7B%0A%20%20%20%20return%20%5Bnull,%20$x%5D%0A%20%20%7D%0A%7D%0A%0Aret%20fun(a,%20b);%0Aret%20val;%0A)
+See [**DEMO**](http://sweetjs.org/browser/editor.html#macro%20ret%20%7B%0A%20%20rule%20%7B%20$f%28$x:expr%20%28,%29%20...%29%20%7D%20=%3E%20%7B%0A%20%20%20%20return%20%5B$f,%20%5B$x%20%28,%29%20...%5D%5D%0A%20%20%7D%0A%20%20rule%20%7B%20$x:expr%20%7D%20=%3E%20%7B%0A%20%20%20%20return%20%5Bnull,%20$x%5D%0A%20%20%7D%0A%7D%0A%0Aret%20fun%28a,%20b%29;%0Aret%20val;%0A)
 
 Example:
 
@@ -140,7 +140,7 @@ var todd = tco(function (n) {
     else return [teven, [n - 1]];
 });
 ```
-See: [**DEMO**](http://sweetjs.org/browser/editor.html#macro%20ret%20%7B%0A%20%20rule%20%7B%20$f($x:expr%20(,)%20...)%20%7D%20=%3E%20%7B%0A%20%20%20%20return%20%5B$f,%20%5B$x%20(,)%20...%5D%5D%0A%20%20%7D%0A%20%20rule%20%7B%20$x:expr%20%7D%20=%3E%20%7B%0A%20%20%20%20return%20%5Bnull,%20$x%5D%0A%20%20%7D%0A%7D%0A%0Avar%20teven%20=%20tco(function%20(n)%20%7B%0A%20%20%20%20if%20(n%20==%200)%20ret%20true;%0A%20%20%20%20else%20ret%20todd(n%20-%201);%0A%7D);%0Avar%20todd%20=%20tco(function%20(n)%20%7B%0A%20%20%20%20if%20(n%20==%200)%20ret%20false;%0A%20%20%20%20else%20ret%20teven(n%20-%201);%0A%7D);%0A)
+See: [**DEMO**](http://sweetjs.org/browser/editor.html#macro%20ret%20%7B%0A%20%20rule%20%7B%20$f%28$x:expr%20%28,%29%20...%29%20%7D%20=%3E%20%7B%0A%20%20%20%20return%20%5B$f,%20%5B$x%20%28,%29%20...%5D%5D%0A%20%20%7D%0A%20%20rule%20%7B%20$x:expr%20%7D%20=%3E%20%7B%0A%20%20%20%20return%20%5Bnull,%20$x%5D%0A%20%20%7D%0A%7D%0A%0Avar%20teven%20=%20tco%28function%20%28n%29%20%7B%0A%20%20%20%20if%20%28n%20==%200%29%20ret%20true;%0A%20%20%20%20else%20ret%20todd%28n%20-%201%29;%0A%7D%29;%0Avar%20todd%20=%20tco%28function%20%28n%29%20%7B%0A%20%20%20%20if%20%28n%20==%200%29%20ret%20false;%0A%20%20%20%20else%20ret%20teven%28n%20-%201%29;%0A%7D%29;%0A)
 
 And it works correctly - see [example4.sjs](example4.sjs).
 
@@ -276,7 +276,7 @@ Usage in browser
 Example with CDN:
 
 ```html
-<script src="https://cdn.rawgit.com/rsp/node-tco/v0.0.11/tco.min.js"></script>
+<script src="https://cdn.rawgit.com/rsp/node-tco/v0.0.12/tco.min.js"></script>
 ```
 
 This is work in progress - more to come.
