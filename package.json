@@ -37,6 +37,7 @@
   },
   "homepage": "https://github.com/rsp/node-tco#readme",
   "devDependencies": {
+    "sweet.js": "^0.7.4",
     "uglify-js": "^2.5.0"
   }
 }

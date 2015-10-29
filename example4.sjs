@@ -1,4 +1,13 @@
 
+macro ret {
+  rule { $f($x:expr (,) ...) } => {
+    return [$f, [$x (,) ...]]
+  }
+  rule { $x:expr } => {
+    return [null, $x]
+  }
+}
+
 var tco = require('./index');
 
 // normal recursive function:
@@ -12,15 +21,15 @@ var nodd = function (n) {
     else return neven(n - 1);
 };
 
-// tco recursive function:
+// tco recursive function with ret macro:
 
 var teven = tco(function (n) {
-    if (n == 0) return [null, true];
-    else return [todd, [n - 1]];
+    if (n == 0) ret true;
+    else ret todd(n - 1);
 });
 var todd = tco(function (n) {
-    if (n == 0) return [null, false];
-    else return [teven, [n - 1]];
+    if (n == 0) ret false;
+    else ret teven(n - 1);
 });
 
 // helper function to check for errors:

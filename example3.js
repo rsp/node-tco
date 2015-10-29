@@ -4,19 +4,23 @@ var tco = require('./index');
 // normal recursive function:
 
 var neven = function (n) {
-    return n == 0 ? true : nodd(n - 1);
+    if (n == 0) return true;
+    else return nodd(n - 1);
 };
 var nodd = function (n) {
-    return n == 0 ? false : neven(n - 1);
+    if (n == 0) return false;
+    else return neven(n - 1);
 };
 
 // tco recursive function:
 
 var teven = tco(function (n) {
-    return n == 0 ? tco.value(true) : [todd, [n - 1]];
+    if (n == 0) return tco.value(true);
+    else return [todd, [n - 1]];
 });
 var todd = tco(function (n) {
-    return n == 0 ? tco.value(false) : [teven, [n - 1]];
+    if (n == 0) return tco.value(false);
+    else return [teven, [n - 1]];
 });
 
 // helper function to check for errors:
@@ -32,7 +36,7 @@ function run(f, num, t) {
 
 // run both functions:
 
-var n = 1000000;
+var n = 10000000;
 run(neven, n, 'normal recursion');
 run(teven, n, 'tco recursion');
 

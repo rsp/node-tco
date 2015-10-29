@@ -14,7 +14,7 @@ Performance
 -----------
 This is how it compares to other similar solutions:
 
-* http://jsperf.com/tco/21
+* [http://jsperf.com/tco/21](http://jsperf.com/tco/21)
 
 Background
 ----------
@@ -43,6 +43,13 @@ But because this cannot be done automatically in JavaScript, you will have to wr
 
 This is the low level API that is not going to change but there are also some other ways to do the same that may be more convenient in some cases.
 
+This can be greatly simplified using a simple macro:
+
+1. change `return fun(a, b);` to `ret fun(a, b);`
+2. change `return val;` to `ret val;`
+
+See the [Macros](#macros) section below for details.
+
 Alternative syntax
 ------------------
 Here are some functions for convenience:
@@ -53,6 +60,9 @@ Here are some functions for convenience:
 
 Macros
 ------
+
+(Note: See below for a single macro that does the same with a simpler syntax.)
+
 Using those two [Sweet.js](http://sweetjs.org/) macros:
 
 ```js
@@ -85,6 +95,54 @@ return [null, val];
 See: [**DEMO**](http://sweetjs.org/browser/editor.html#macro%20tail%20%7B%0A%20%20rule%20%7B%20$f($x:expr%20(,)%20...)%20%7D%20=%3E%20%7B%0A%20%20%20%20return%20%5B$f,%20%5B$x%20(,)%20...%5D%5D%0A%20%20%7D%0A%7D%0A%0Amacro%20ret%20%7B%0A%20%20rule%20%7B%20$x:expr%20%7D%20=%3E%20%7B%0A%20%20%20%20return%20%5Bnull,%20$x%5D%0A%20%20%7D%0A%7D%0A%0Atail%20fun(a,%20b);%0Aret%20val;%0A)
 
 This may be a much better syntax for the tco module where sweet.js can be used - definitely to be explored in the future.
+
+### Single macro
+
+Another idea for future syntax: instead of those two macros above for tail calls and returning simple values, we could use one macro for both of those cases:
+
+```js
+macro ret {
+  rule { $f($x:expr (,) ...) } => {
+    return [$f, [$x (,) ...]]
+  }
+  rule { $x:expr } => {
+    return [null, $x]
+  }
+}
+```
+
+Now the only difference of optimized function body as compared to a normal function would be changing `return` keywords to `ret`.
+
+See [**DEMO**](http://sweetjs.org/browser/editor.html#macro%20ret%20%7B%0A%20%20rule%20%7B%20$f($x:expr%20(,)%20...)%20%7D%20=%3E%20%7B%0A%20%20%20%20return%20%5B$f,%20%5B$x%20(,)%20...%5D%5D%0A%20%20%7D%0A%20%20rule%20%7B%20$x:expr%20%7D%20=%3E%20%7B%0A%20%20%20%20return%20%5Bnull,%20$x%5D%0A%20%20%7D%0A%7D%0A%0Aret%20fun(a,%20b);%0Aret%20val;%0A)
+
+Example:
+
+```js
+var teven = tco(function (n) {
+    if (n == 0) ret true;
+    else ret todd(n - 1);
+});
+var todd = tco(function (n) {
+    if (n == 0) ret false;
+    else ret teven(n - 1);
+});
+```
+
+is converted by the `ret` macro into:
+
+```js
+var teven = tco(function (n) {
+    if (n == 0) return [null, true];
+    else return [todd, [n - 1]];
+});
+var todd = tco(function (n) {
+    if (n == 0) return [null, false];
+    else return [teven, [n - 1]];
+});
+```
+See: [**DEMO**](http://sweetjs.org/browser/editor.html#macro%20ret%20%7B%0A%20%20rule%20%7B%20$f($x:expr%20(,)%20...)%20%7D%20=%3E%20%7B%0A%20%20%20%20return%20%5B$f,%20%5B$x%20(,)%20...%5D%5D%0A%20%20%7D%0A%20%20rule%20%7B%20$x:expr%20%7D%20=%3E%20%7B%0A%20%20%20%20return%20%5Bnull,%20$x%5D%0A%20%20%7D%0A%7D%0A%0Avar%20teven%20=%20tco(function%20(n)%20%7B%0A%20%20%20%20if%20(n%20==%200)%20ret%20true;%0A%20%20%20%20else%20ret%20todd(n%20-%201);%0A%7D);%0Avar%20todd%20=%20tco(function%20(n)%20%7B%0A%20%20%20%20if%20(n%20==%200)%20ret%20false;%0A%20%20%20%20else%20ret%20teven(n%20-%201);%0A%7D);%0A)
+
+And it works correctly - see [example4.sjs](example4.sjs).
 
 Imperfection
 ------------
@@ -185,19 +243,23 @@ The mutual recursion works in exactly the same way as simple self-recursion:
 // normal recursive function:
 
 var neven = function (n) {
-    return n == 0 ? true : nodd(n - 1);
+    if (n == 0) return true;
+    else return nodd(n - 1);
 };
 var nodd = function (n) {
-    return n == 0 ? false : neven(n - 1);
+    if (n == 0) return false;
+    else return neven(n - 1);
 };
 
 // tco recursive function:
 
 var teven = tco(function (n) {
-    return n == 0 ? [null, true] : [todd, [n - 1]];
+    if (n == 0) return [null, true];
+    else return [todd, [n - 1]];
 });
 var todd = tco(function (n) {
-    return n == 0 ? [null, false] : [teven, [n - 1]];
+    if (n == 0) return [null, false];
+    else return [teven, [n - 1]];
 });
 ```
 See [example2.js](example2.js) for more details.
@@ -214,7 +276,7 @@ Usage in browser
 Example with CDN:
 
 ```html
-<script src="https://cdn.rawgit.com/rsp/node-tco/v0.0.10/tco.min.js"></script>
+<script src="https://cdn.rawgit.com/rsp/node-tco/v0.0.11/tco.min.js"></script>
 ```
 
 This is work in progress - more to come.

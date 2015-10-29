@@ -19,8 +19,23 @@ macro ret {
     return [null, $x]
   }
 }
-tail3 a(1, 2, 3, 4+2);
 
+tail3 a(1, 2, 3, 4+2);
 ret 1;
 ret a(1, 2, 3, 4);
+
+// Another option with single macro:
+
+macro ret2 {
+  rule { $f($x:expr (,) ...) } => {
+    return [$f, [$x (,) ...]]
+  }
+  rule { $x:expr } => {
+    return [null, $x]
+  }
+}
+
+ret2 a(1, 2, 3, 4+2);
+ret2 1;
+ret2 a(1, 2, 3, 4);
 
