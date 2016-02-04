@@ -11,13 +11,13 @@ window.tco = (function () {
 
 function tco(f) {
 
-    if (typeof f == 'function') {
+    if (typeof f === 'function') {
         var tf = function () {
             var nf = f, na = arguments;
             while (1) {
                 var r = nf.apply(null, na);
-                if (typeof r[0] == 'function') {
-                    if (typeof r[0].tco == 'function') {
+                if (typeof r[0] === 'function') {
+                    if (typeof r[0].tco === 'function') {
                         nf = r[0].tco;
                         na = r[1];
                     } else {
