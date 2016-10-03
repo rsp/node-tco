@@ -4,12 +4,15 @@ node tco
 [![npm install tco](https://nodei.co/npm/tco.png?compact=true)](https://www.npmjs.com/package/tco)
 <br>
 [![Code Climate](https://codeclimate.com/github/rsp/node-tco/badges/gpa.svg)](https://codeclimate.com/github/rsp/node-tco)
+[![Known Vulnerabilities](https://snyk.io/test/github/rsp/node-tco/599f925e05aff2798799a90114d9afc1f3aa0c56/badge.svg)](https://snyk.io/test/github/rsp/node-tco/599f925e05aff2798799a90114d9afc1f3aa0c56)
 [![Downloads](https://img.shields.io/npm/dt/tco.svg)](http://npm-stat.com/charts.html?package=tco)
 
 Tail call optimization in Node.
 
 [https://github.com/rsp/node-tco](https://github.com/rsp/node-tco)
 ([readme](https://github.com/rsp/node-tco#readme))
+
+Note: This module may not be needed soon when the ES6 tail call optimization is supported in Node natively.
 
 This module lets you define deeply recursive functions without using any additional memory for stack frames. The recursion depth can grow infinitely and the memory consumption stays constant.
 
