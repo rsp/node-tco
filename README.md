@@ -314,4 +314,7 @@ Rafał Pocztarski - [https://github.com/rsp](https://github.com/rsp)
 
 License
 -------
-[![License][license-svg]][license-url] MIT License (Expat). See [LICENSE.md][license-url] for details.
+This is software is released under the Expat (MIT) License -
+a permissive non-copyleft, GPL-compatible, FSF-approved,
+free software, open source license.
+See [LICENSE.md][license-url] for details.
