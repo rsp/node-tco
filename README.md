@@ -21,7 +21,8 @@ node tco
 [license-svg]: https://img.shields.io/npm/l/tco.svg
 [license-url]: https://github.com/rsp/node-tco/blob/master/LICENSE.md
 [issues-url]: https://github.com/rsp/node-tco/issues
-[github-follow-svg]: https://img.shields.io/github/followers/espadrine.svg?style=social&label=Follow
+[github-follow-svg]: https://img.shields.io/github/followers/rsp.svg?style=social&label=Follow
+[github-follow-url]: https://github.com/rsp
 [twitter-follow-svg]: https://img.shields.io/twitter/follow/pocztarski.svg?style=social&label=Follow
 [twitter-follow-url]: https://twitter.com/intent/follow?screen_name=pocztarski
 
