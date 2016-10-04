@@ -1,16 +1,30 @@
 node tco
 ========
 
-[![npm install tco](https://nodei.co/npm/tco.png?compact=true)](https://www.npmjs.com/package/tco)
+[![npm install][install-png]][npm-url]
 <br>
-[![Code Climate](https://codeclimate.com/github/rsp/node-tco/badges/gpa.svg)](https://codeclimate.com/github/rsp/node-tco)
-[![Known Vulnerabilities](https://snyk.io/test/github/rsp/node-tco/599f925e05aff2798799a90114d9afc1f3aa0c56/badge.svg)](https://snyk.io/test/github/rsp/node-tco/599f925e05aff2798799a90114d9afc1f3aa0c56)
-[![Downloads](https://img.shields.io/npm/dt/tco.svg)](http://npm-stat.com/charts.html?package=tco)
+[![Code Climate][codeclimate-svg]][codeclimate-url]
+[![Known Vulnerabilities][snyk-svg]][snyk-url]
+[![Downloads][downloads-svg]][stats-url]
+[![License][license-svg]][license-url]
+
+[install-png]: https://nodei.co/npm/tco.png?compact=true
+[codeclimate-svg]: https://codeclimate.com/github/rsp/node-tco/badges/gpa.svg
+[codeclimate-url]: https://codeclimate.com/github/rsp/node-tco
+[snyk-svg]: https://snyk.io/test/github/rsp/node-tco/badge.svg
+[snyk-url]: https://snyk.io/test/github/rsp/node-tco
+[downloads-svg]: https://img.shields.io/npm/dt/tco.svg
+[stats-url]: http://npm-stat.com/charts.html?package=tco
+[npm-url]: https://www.npmjs.com/package/tco
+[github-readme-url]: https://github.com/rsp/node-tco#readme
+[github-url]: https://github.com/rsp/node-tco)
+[license-svg]: https://img.shields.io/npm/l/tco.svg
+[license-url]: https://github.com/rsp/node-tco/blob/master/LICENSE.md
+[issues-url]: https://github.com/rsp/node-tco/issues
 
 Tail call optimization in Node.
 
-[https://github.com/rsp/node-tco](https://github.com/rsp/node-tco)
-([readme](https://github.com/rsp/node-tco#readme))
+[https://github.com/rsp/node-tco][github-url] ([readme][github-readme-url])
 
 Note: This module may not be needed soon when the ES6 tail call optimization is supported in Node natively.
 
@@ -292,7 +306,7 @@ This is work in progress - more to come.
 Issues
 ------
 For any bug reports or feature requests please
-[post an issue on GitHub](https://github.com/rsp/node-tco/issues).
+[post an issue on GitHub][issues-url].
 
 Author
 ------
@@ -300,4 +314,4 @@ Rafał Pocztarski - [https://github.com/rsp](https://github.com/rsp)
 
 License
 -------
-MIT License (Expat). See [LICENSE.md](LICENSE.md) for details.
+[![License][license-svg]][license-url] MIT License (Expat). See [LICENSE.md][license-url] for details.
