@@ -314,7 +314,8 @@ For any bug reports or feature requests please
 
 Author
 ------
-Rafał Pocztarski - [pocztarski.com](https://pocztarski.com/)
+[Rafał Pocztarski](https://pocztarski.com/)
+<br/>
 [![Follow on GitHub][github-follow-svg]][github-follow-url]
 [![Follow on Twitter][twitter-follow-svg]][twitter-follow-url]
 
