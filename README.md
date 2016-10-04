@@ -21,6 +21,9 @@ node tco
 [license-svg]: https://img.shields.io/npm/l/tco.svg
 [license-url]: https://github.com/rsp/node-tco/blob/master/LICENSE.md
 [issues-url]: https://github.com/rsp/node-tco/issues
+[github-follow-svg]: https://img.shields.io/github/followers/espadrine.svg?style=social&label=Follow
+[twitter-follow-svg]: https://img.shields.io/twitter/follow/pocztarski.svg?style=social&label=Follow
+[twitter-follow-url]: https://twitter.com/intent/follow?screen_name=pocztarski
 
 Tail call optimization in Node.
 
@@ -310,7 +313,9 @@ For any bug reports or feature requests please
 
 Author
 ------
-Rafał Pocztarski - [https://github.com/rsp](https://github.com/rsp)
+Rafał Pocztarski - [pocztarski.com](https://pocztarski.com/)
+[![Follow on GitHub][github-follow-svg]][github-follow-url]
+[![Follow on Twitter][twitter-follow-svg]][twitter-follow-url]
 
 License
 -------
