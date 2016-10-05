@@ -321,7 +321,7 @@ Author
 
 License
 -------
-This is free software released under the Expat (MIT) License.
+This is **free software** released under the Expat (MIT) License.
 
 It is a permissive, non-copyleft, GPL-compatible license that complies with:
 
