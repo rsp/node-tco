@@ -323,4 +323,10 @@ License
 -------
 This is free software released under the Expat (MIT) License.
 
+It is a permissive, non-copyleft, GPL-compatible license that complies with:
+
+* [The Free Software Definition](https://www.gnu.org/philosophy/free-sw.html.en)
+* [The Debian Free Software Guidelines](https://www.debian.org/social_contract.html#guidelines)
+* [The Open Source Definition](https://opensource.org/osd-annotated)
+
 See [LICENSE.md][license-url] for details.
